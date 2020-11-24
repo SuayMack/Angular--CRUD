@@ -23,11 +23,11 @@ const routes: Routes = [
   {
     path: "products/update/:id",
     component: ProductUpdateComponent
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

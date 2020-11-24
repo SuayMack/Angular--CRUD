@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -9,9 +10,19 @@ import { ProductService } from '../product.service';
 })
 export class ProductUpdateComponent implements OnInit {
 
-  constructor(private productService: ProductService, private router: Router) { }
+  product!: Product;
+
+  constructor(
+    private productService: ProductService, 
+    private router: Router, 
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get("id");
+    this.productService.readById(id).subscribe(product => {
+      this.product = product;
+    });
   }
 
   updateProduct(): void {
